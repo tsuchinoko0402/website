@@ -29,7 +29,6 @@ jobs:
       - uses: codecov/codecov-action@v1
         with:
           file: ./coverage/lcov.info
-      - run: yarn type-check
       - run: yarn build
         env:
           MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
