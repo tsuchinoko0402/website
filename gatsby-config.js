@@ -19,8 +19,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/data/memo`,
-        name: `blog`,
+        path: `${__dirname}/src/data`,
+        name: `content`,
       },
     },
     {
@@ -46,7 +46,18 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1.0725rem`,
             },
           },
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: "目次",
+              tight: false,
+              fromHeading: 1,
+              toHeading: 6,
+            },
+          },
+          `gatsby-remark-autolink-headers`,
           `gatsby-remark-prismjs`,
+          `gatsby-remark-prismjs-title`,
           `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
@@ -85,7 +96,7 @@ module.exports = {
             query: `
               {
                 allMarkdownRemark(
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  sort: { order: DESC, fields: [frontmatter___updatedDate] },
                 ) {
                   nodes {
                     excerpt
@@ -95,7 +106,7 @@ module.exports = {
                     }
                     frontmatter {
                       title
-                      date
+                      updatedDate
                     }
                   }
                 }
@@ -153,7 +164,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-typegen`,
-    `gatsby-plugin-feed`,
     `gatsby-plugin-material-ui`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
