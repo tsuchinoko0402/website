@@ -26,11 +26,13 @@ const BlogPostTemplate: React.FC<
             {post.frontmatter.date}
           </Typography>
         </header>
-        <section
-          dangerouslySetInnerHTML={{ __html: post.html }}
-          itemProp="articleBody"
-        />
-        <hr />
+        <Typography variant="body1" color="textPrimary">
+          <section
+            dangerouslySetInnerHTML={{ __html: post.html }}
+            itemProp="articleBody"
+          />
+          <hr />
+        </Typography>
         <footer></footer>
       </article>
       <nav className="blog-post-nav">
@@ -66,11 +68,7 @@ const BlogPostTemplate: React.FC<
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query MemoPostBySlug(
-    $id: String!
-    $previousPostId: String
-    $nextPostId: String
-  ) {
+  query MemoPostBySlug($id: String!) {
     site {
       siteMetadata {
         title
@@ -82,24 +80,9 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        publishedDate(formatString: "YYYY/MM/DD")
+        updatedDate(formatString: "YYYY/MM/DD")
         description
-      }
-    }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
-      }
-    }
-    next: markdownRemark(id: { eq: $nextPostId }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        title
       }
     }
   }
