@@ -144,7 +144,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
+                rowsPerPageOptions={[10, 25, 50, { label: "All", value: -1 }]}
                 colSpan={3}
                 count={posts.length}
                 rowsPerPage={rowsPerPage}
