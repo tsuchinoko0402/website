@@ -165,7 +165,11 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
         <Typography>カテゴリ一覧</Typography>
         {categories.map(category => {
           return (
-            <Button variant="outlined" size="small" noWrap>
+            <Button
+              variant="outlined"
+              size="small"
+              style={{ textTransform: "none" }}
+            >
               <Typography variant="body1" color="textPrimary">
                 {category.name}
               </Typography>
@@ -177,7 +181,11 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
         <Typography>タグ一覧</Typography>
         {tags.map(tag => {
           return (
-            <Button variant="outlined" size="small" noWrap>
+            <Button
+              variant="outlined"
+              size="small"
+              style={{ textTransform: "none" }}
+            >
               <Typography variant="body1" color="textPrimary">
                 {tag.name}
               </Typography>
