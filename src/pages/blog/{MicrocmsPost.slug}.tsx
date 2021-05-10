@@ -3,7 +3,7 @@ import { graphql, PageProps } from "gatsby"
 import Layout from "../../components/Layout"
 import PostContent from "../../components/PostContent"
 
-const PostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
+const BlogPostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
   const post = props.data.microcmsPost
   return (
     <Layout>
@@ -35,4 +35,4 @@ export const query = graphql`
   }
 `
 
-export default PostPage
+export default BlogPostPage

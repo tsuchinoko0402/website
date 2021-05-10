@@ -1,24 +1,23 @@
 import * as React from "react"
-import { Link, graphql, PageProps } from "gatsby"
-
-import Layout from "../components/Layout"
-import SEO from "../components/SEO"
+import { graphql, Link, PageProps } from "gatsby"
+import Layout from "../../../components/Layout"
 import {
   Box,
   Paper,
   Table,
   TableBody,
-  TableRow,
   TableContainer,
-  Theme,
+  TableCell,
+  TableFooter,
+  TablePagination,
+  TableRow,
   Typography,
+  Theme,
   createStyles,
   makeStyles,
   withStyles,
-  TableFooter,
-  TablePagination,
-  Button,
 } from "@material-ui/core"
+import SEO from "../../../components/SEO"
 import TablePaginationActions from "@material-ui/core/TablePagination/TablePaginationActions"
 
 const StyledTableCell = withStyles((theme: Theme) =>
@@ -49,22 +48,18 @@ const useStyles = makeStyles({
   },
 })
 
-const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
-  data,
-}) => {
+const BlogCategoryPage: React.FC<
+  PageProps<GatsbyTypes.BlogCategoryPageQuery>
+> = ({ data }) => {
   const posts = data.allMicrocmsPost.nodes
-  const categories = data.allMicrocmsCategory.nodes
-  const tags = data.allMicrocmsTag.nodes
+  const categoryName = data.microcmsCategory.name
+  const categorySlug = data.microcmsCategory.slug
 
   if (posts.length === 0) {
     return (
       <Layout>
-        <SEO title="All posts" />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
+        <SEO title={`No page in category:${categorySlug}`} />
+        <p>No blog posts found in category:{categoryName}.</p>
       </Layout>
     )
   }
@@ -88,12 +83,10 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
 
   return (
     <Layout>
-      <SEO title="All posts" />
-      <Typography variant="h4" color="textPrimary" component="h4">
-        ブログ
-      </Typography>
-      <Typography variant="body1" color="textPrimary" component="p">
-        試行錯誤したりあれこれ考えてみた記録。
+      <SEO title={`カテゴリ：${categoryName} 一覧`} />
+      <title>カテゴリ：{categoryName} 一覧</title>
+      <Typography variant="h3" color="textPrimary" component="h3">
+        カテゴリ：{categoryName} のブログ記事一覧
       </Typography>
       <Box style={{ margin: `10px 10px 20px 10px` }}>
         <TableContainer component={Paper}></TableContainer>
@@ -117,7 +110,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
                         component="p"
                       >
                         <Link
-                          to={post.slug}
+                          to={`/blog/${post.slug}`}
                           rel="noreferrer noopener"
                           target="_blank"
                         >
@@ -160,76 +153,30 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
           </TableFooter>
         </Table>
       </Box>
-      <Box style={{ margin: `10px 10px 20px 10px` }}>
-        <Typography>カテゴリ一覧</Typography>
-        {categories.map(category => {
-          return (
-            <Button
-              variant="outlined"
-              size="small"
-              style={{ textTransform: "none" }}
-            >
-              <Typography variant="body1" color="textPrimary">
-                {category.name}
-              </Typography>
-            </Button>
-          )
-        })}
-      </Box>
-      <Box style={{ margin: `10px 10px 20px 10px` }}>
-        <Typography>タグ一覧</Typography>
-        {tags.map(tag => {
-          return (
-            <Button
-              variant="outlined"
-              size="small"
-              style={{ textTransform: "none" }}
-            >
-              <Typography variant="body1" color="textPrimary">
-                {tag.name}
-              </Typography>
-            </Button>
-          )
-        })}
-      </Box>
     </Layout>
   )
 }
 
-export default BlogIndex
-
-export const pageQuery = graphql`
-  query BlogIndexPage {
-    allMicrocmsPost {
+export const query = graphql`
+  query BlogCategoryPage($slug: String!) {
+    microcmsCategory(slug: { eq: $slug }) {
+      slug
+      name
+      description
+    }
+    allMicrocmsPost(filter: { category: { slug: { eq: $slug } } }) {
       nodes {
         slug
         title
-        overview
         content
-        publishedAt(formatString: "YYYY/MM/DD　hh:mm:ss")
-        updatedAt(formatString: "YYYY/MM/DD　hh:mm:ss")
+        publishedAt(formatString: "YYYY.MM.DD hh:mm")
         category {
           slug
           name
         }
-        tag {
-          name
-          slug
-        }
-      }
-    }
-    allMicrocmsCategory {
-      nodes {
-        slug
-        name
-        description
-      }
-    }
-    allMicrocmsTag {
-      nodes {
-        name
-        slug
       }
     }
   }
 `
+
+export default BlogCategoryPage
