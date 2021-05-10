@@ -10,6 +10,7 @@ import {
   TableBody,
   TableRow,
   TableContainer,
+  TableCell,
   Theme,
   Typography,
   createStyles,
@@ -168,6 +169,8 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
               variant="outlined"
               size="small"
               style={{ textTransform: "none" }}
+              component={Link}
+              to={`/blog/categories/${category.slug}`}
             >
               <Typography variant="body1" color="textPrimary">
                 {category.name}
@@ -184,6 +187,8 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
               variant="outlined"
               size="small"
               style={{ textTransform: "none" }}
+              component={Link}
+              to={`/blog/tags/${tag.slug}`}
             >
               <Typography variant="body1" color="textPrimary">
                 {tag.name}
