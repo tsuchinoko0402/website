@@ -1,7 +1,9 @@
 import { Box, createStyles, makeStyles, Theme } from "@material-ui/core"
 import React from "react"
 import Footer from "../Footer"
-import Header from "../Header"
+import Header from "../Organisms/Header"
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider"
+import { theme } from "../../assets/theme"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -19,17 +21,19 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   const classes = useStyles()
   return (
-    <Box className={classes.background}>
-      <Header siteTitle="OKAZAKI Shogo's Website" />
-      <main
-        style={{
-          padding: `80px 20px 20px 10px`,
-        }}
-      >
-        {children}
-      </main>
-      <Footer />
-    </Box>
+    <MuiThemeProvider theme={theme}>
+      <Box className={classes.background}>
+        <Header siteTitle="OKAZAKI Shogo's Website" />
+        <main
+          style={{
+            padding: `80px 20px 20px 10px`,
+          }}
+        >
+          {children}
+        </main>
+        <Footer />
+      </Box>
+    </MuiThemeProvider>
   )
 }
 

@@ -20,6 +20,7 @@ import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark"
 import { Link } from "gatsby"
 import React from "react"
 import { useScrollTrigger } from "@material-ui/core"
+import SiteNameButton from "../Atoms/Button/SitenameButton"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -152,19 +153,7 @@ const Header: React.FC<Props> = props => {
       <HideOnScroll {...props}>
         <AppBar position="fixed">
           <Toolbar className={classes.toolbar}>
-            <Link to="/">
-              <Button size="large" component={Link} to="/">
-                <Typography
-                  variant="subtitle1"
-                  color="inherit"
-                  align="left"
-                  noWrap
-                  className={classes.toolbarTitle}
-                >
-                  {siteTitle}
-                </Typography>
-              </Button>
-            </Link>
+            <SiteNameButton siteTitle={siteTitle} />
             <div className={classes.grow}></div>
             <div className={classes.sectionDesktop}>
               <Button
