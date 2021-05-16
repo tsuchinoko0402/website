@@ -1,12 +1,13 @@
 import React from "react"
 import * as styles from "./SiteMenu.module.css"
 import { Menu } from "@material-ui/core"
-import MoreIcon from "@material-ui/icons/MoreVert"
-import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded"
-import MenuBookIcon from "@material-ui/icons/MenuBook"
-import HomeIcon from "@material-ui/icons/Home"
-import ReceiptOutlinedIcon from "@material-ui/icons/ReceiptOutlined"
-import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark"
+import {
+  MenuBook,
+  Home,
+  DirectionsRunRounded,
+  ReceiptOutlined,
+  CollectionsBookmark,
+} from "@material-ui/icons"
 import SiteMenuItem from "../Atoms/Item/SiteMenuItem"
 
 interface SiteMenuState {
@@ -30,33 +31,28 @@ const SiteMenu: React.FC<SiteMenuState> = ({
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <SiteMenuItem
-        text="トップ"
-        icon={<HomeIcon />}
-        path="/"
-        label="top page"
-      />
+      <SiteMenuItem text="トップ" icon={<Home />} path="/" label="top page" />
       <SiteMenuItem
         text="個人的な活動"
-        icon={<DirectionsRunRoundedIcon />}
+        icon={<DirectionsRunRounded />}
         path="/personal"
         label="personal activity"
       />
       <SiteMenuItem
         text="ブログ"
-        icon={<MenuBookIcon />}
+        icon={<MenuBook />}
         path="/blog"
         label="blog"
       />
       <SiteMenuItem
         text="メモ"
-        icon={<ReceiptOutlinedIcon />}
+        icon={<ReceiptOutlined />}
         path="/memo"
         label="memo"
       />
       <SiteMenuItem
         text="記事"
-        icon={<CollectionsBookmarkIcon />}
+        icon={<CollectionsBookmark />}
         path="/posts"
         label="posts"
       />
