@@ -1,26 +1,20 @@
 import { graphql, Link, PageProps } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles"
 import { Facebook, GitHub, Mail, Twitter } from "@material-ui/icons"
 import * as React from "react"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 import {
-  Avatar,
   Card,
   CardContent,
   CardHeader,
   Grid,
   Typography,
 } from "@material-ui/core"
+import ProfileAvatar from "../components/Atoms/Profile/ProfileAvatar"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    avatar: {
-      width: theme.spacing(12),
-      height: theme.spacing(12),
-      margin: `3px`,
-    },
     icon: {
       color: theme.palette.primary.main,
     },
@@ -44,9 +38,7 @@ const IndexPage: React.FC<PageProps<GatsbyTypes.IndexPageQuery>> = ({
           alignItems="flex-start"
         >
           <Grid item justify="center">
-            <Avatar className={classes.avatar}>
-              <StaticImage src="../images/profile.png" alt="Profile" />
-            </Avatar>
+            <ProfileAvatar />
             <a href={"mailto:" + data.site.siteMetadata.social.mail}>
               <Mail className={classes.icon} />
             </a>
