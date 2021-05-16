@@ -22,6 +22,8 @@ import React from "react"
 import { useScrollTrigger } from "@material-ui/core"
 import SiteNameButton from "../Atoms/Button/SitenameButton"
 import MenuButton from "../Atoms/Button/MenuButton"
+import SiteMenuItem from "../Atoms/Item/SiteMenuItem"
+import SiteMenu from "../Molecules/SiteMenu"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -98,56 +100,21 @@ const Header: React.FC<Props> = props => {
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-  const handleMobileMenuClose = () => {
+  const handleMobileMenuClose = (): void => {
     setMobileMoreAnchorEl(null)
   }
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>): void => {
     setMobileMoreAnchorEl(event.currentTarget)
   }
 
   const mobileMenuId = "primary-search-account-menu-mobile"
   const renderMobileMenu = (
-    <Menu
+    <SiteMenu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem component={Link} to="/">
-        <IconButton aria-label="top page" color="inherit">
-          <HomeIcon />
-        </IconButton>
-        <p>トップ</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/personal">
-        <IconButton aria-label="personal activity" color="inherit">
-          <DirectionsRunRoundedIcon />
-        </IconButton>
-        <p>個人的な活動</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/blog">
-        <IconButton aria-label="blog" color="inherit">
-          <MenuBookIcon />
-        </IconButton>
-        <p>ブログ</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/memo">
-        <IconButton aria-label="memo" color="inherit">
-          <ReceiptOutlinedIcon />
-        </IconButton>
-        <p>メモ</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/posts">
-        <IconButton aria-label="posts" color="inherit">
-          <CollectionsBookmarkIcon />
-        </IconButton>
-        <p>記事</p>
-      </MenuItem>
-    </Menu>
+      handleMobileMenuClose={handleMobileMenuClose}
+      isMobileMenuOpen={isMobileMenuOpen}
+    />
   )
   return (
     <header>
