@@ -1,0 +1,26 @@
+.profileTitle {
+  position: relative;
+  padding: 6px;
+  background-image: -webkit-linear-gradient(
+    315deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  border-radius: 10px;
+}
+
+.profileTitle span {
+  display: block;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-radius: 4px;
+}

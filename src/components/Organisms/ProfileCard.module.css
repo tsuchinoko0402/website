@@ -1,0 +1,26 @@
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profileCard {
+  max-width: 500px;
+  position: relative;
+  top: -130px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  bottom: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  animation-name: fadein;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}

@@ -1,18 +1,27 @@
 import * as React from "react"
 import { graphql, PageProps } from "gatsby"
 import Layout from "../../components/Layout"
-import PostContent from "../../components/PostContent"
+import PostContent from "../../components/Organisms/PostContent"
+import { Util } from "../../Util"
 
 const BlogPostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
   const post = props.data.microcmsPost
+  const publishedDate = Util.formatDate(
+    new Date(Date.parse(post.publishedAt)),
+    "YYYY年MM月DD日 hh:mm:ss"
+  )
+  const updatedDate = Util.formatDate(
+    new Date(Date.parse(post.updatedAt)),
+    "YYYY年MM月DD日 hh:mm:ss"
+  )
   return (
     <Layout>
       <title>{post.title}</title>
       <meta name="blog" content={`${post.title}`} />
       <PostContent
         title={post.title}
-        publishedAt={post.publishedAt}
-        updatedAt={post.updatedAt}
+        publishedAt={publishedDate}
+        updatedAt={updatedDate}
         content={post.content}
       />
     </Layout>
@@ -25,8 +34,8 @@ export const query = graphql`
       slug
       title
       content
-      publishedAt(formatString: "YYYY.DD.MM hh:mm")
-      updatedAt(formatString: "YYYY.DD.MM hh:mm")
+      publishedAt
+      updatedAt
       category {
         slug
         name

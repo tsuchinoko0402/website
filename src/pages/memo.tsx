@@ -11,6 +11,7 @@ import {
   ListItemText,
 } from "@material-ui/core"
 import { ListItemProps } from "@material-ui/core/ListItem"
+import PageTitle from "../components/Atoms/Typography/PageTitle"
 
 const MemoIndex: React.FC<PageProps<GatsbyTypes.MemoIndexPageQuery>> = ({
   data,
@@ -33,9 +34,7 @@ const MemoIndex: React.FC<PageProps<GatsbyTypes.MemoIndexPageQuery>> = ({
   return (
     <Layout>
       <SEO title="All memos" />
-      <Typography variant="h4" color="textPrimary" component="h4">
-        雑多なメモ
-      </Typography>
+      <PageTitle name="雑多なメモ" />
       <Typography variant="body1" color="textPrimary" component="p">
         主に自分のため用。ブログ記事とか他所に投稿するまでもない内容のもの。まとまったら記事にする（たぶん
       </Typography>

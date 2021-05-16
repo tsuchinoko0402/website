@@ -15,6 +15,7 @@ import {
 } from "@material-ui/core"
 import { graphql, Link, PageProps } from "gatsby"
 import * as React from "react"
+import PageTitle from "../components/Atoms/Typography/PageTitle"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 
@@ -54,6 +55,7 @@ const PostsPage: React.FC<PageProps<GatsbyTypes.PostsPageQuery>> = ({
     <Layout>
       <SEO title="投稿したもの" />
       <title>投稿したもの</title>
+      <PageTitle name="投稿したもの" />
       <Typography variant="body1" color="textPrimary" component="p">
         他所のサービスに投稿したものの一覧です。
         <ul>

@@ -1,9 +1,9 @@
 import * as React from "react"
 import { Link, graphql, PageProps } from "gatsby"
-
 import Layout from "../../components/Layout"
 import Seo from "../../components/SEO"
 import { Typography } from "@material-ui/core"
+import PageTitle from "../../components/Atoms/Typography/PageTitle"
 
 const BlogPostTemplate: React.FC<
   PageProps<GatsbyTypes.MemoPostBySlugQuery>
@@ -19,14 +19,12 @@ const BlogPostTemplate: React.FC<
       />
       <article className="memo-content" itemScope>
         <header>
-          <Typography variant="h3" color="textPrimary" component="h1">
-            {post.frontmatter.title}
-          </Typography>
+          <PageTitle name={post.frontmatter.title} />
           <Typography variant="body2" color="textSecondary" component="p">
             {post.frontmatter.date}
           </Typography>
         </header>
-        <Typography variant="body1" color="textPrimary">
+        <Typography variant="body1">
           <section
             dangerouslySetInnerHTML={{ __html: post.html }}
             itemProp="articleBody"

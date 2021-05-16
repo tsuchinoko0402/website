@@ -4,6 +4,8 @@
   "version": "0.1.0",
   "author": "OKAZAKI Shogo <okazaki@zakioka.net>",
   "dependencies": {
+    "@fontsource/montserrat": "^4.3.0",
+    "@fontsource/source-code-pro": "^4.3.0",
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
     "gatsby": "^3.3.1",
@@ -38,7 +40,7 @@
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^1.0.9",
     "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.75",
+    "typeface-mplus-1p": "^0.1.63",
     "typography": "^0.16.19"
   },
   "devDependencies": {

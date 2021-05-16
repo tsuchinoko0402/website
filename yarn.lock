@@ -1276,6 +1276,16 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/montserrat@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/montserrat/-/montserrat-4.3.0.tgz#841d46d83d38bcf0d19e8788de741acf2ea4e7ed"
+  integrity sha512-KFJlFfgPtCP1vR9YIUSQbDBhdVadLs9b+STpBjGxWMg5MNzoKVt7IQmf9UEKyxzsXyOQkQI6TqGG38fY0cdkwg==
+
+"@fontsource/source-code-pro@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/source-code-pro/-/source-code-pro-4.3.0.tgz#bd4a3d93fffb47d11ac33c1e09b54d78b31217d5"
+  integrity sha512-Yqz4N/JnoYGvkbKT6b5npujUwyP24UnDWBQ2zWbpXncUBZ6pKESLr7G72VPGGTDUMpMmLpuigVWjmbfRKObLLg==
+
 "@gatsbyjs/reach-router@^1.3.6":
   version "1.3.6"
   resolved "https://registry.npmjs.org/@gatsbyjs/reach-router/-/reach-router-1.3.6.tgz"
@@ -17291,10 +17301,10 @@ typeface-merriweather@0.0.72:
   resolved "https://registry.npmjs.org/typeface-merriweather/-/typeface-merriweather-0.0.72.tgz"
   integrity sha512-gO0+fcZ1fTyKUsYY1ltYOOTI6FmBGeEdyIfeQg9NL8aInndk0feiJJVJsKHm/DiyYrnQEezraAQhz/KQoqMGtw==
 
-typeface-montserrat@0.0.75:
-  version "0.0.75"
-  resolved "https://registry.npmjs.org/typeface-montserrat/-/typeface-montserrat-0.0.75.tgz"
-  integrity sha512-8ski20t3hdwu2T85pVfjK4jsDbwW8yWzd+LAKxYEmu+JVLVlB7G2yfmdKZz06pUwYCLVFvHvup+NYYulHDpE+w==
+typeface-mplus-1p@^0.1.63:
+  version "0.1.63"
+  resolved "https://registry.yarnpkg.com/typeface-mplus-1p/-/typeface-mplus-1p-0.1.63.tgz#44a257afafdab4178c0e1f108f66a4fbe24ea618"
+  integrity sha1-RKJXr6/atBeMDh8Qj2ak++JOphg=
 
 typescript@^4.2.4:
   version "4.2.4"

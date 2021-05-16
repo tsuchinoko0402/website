@@ -39,11 +39,6 @@ const Profile: React.FC = () => {
   return (
     <Grid container direction="column" justify="flex-start" spacing={2}>
       <Grid item>
-        <Typography variant="h4" color="textPrimary" component="h4">
-          個人的な活動
-        </Typography>
-      </Grid>
-      <Grid item>
         <Paper className={classes.scoutPaper}>
           <Grid
             container

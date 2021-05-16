@@ -1,54 +1,14 @@
 import * as React from "react"
-import { Link, graphql, PageProps } from "gatsby"
-
+import { graphql, PageProps } from "gatsby"
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
-import {
-  Box,
-  Paper,
-  Table,
-  TableBody,
-  TableRow,
-  TableContainer,
-  TableCell,
-  Theme,
-  Typography,
-  createStyles,
-  makeStyles,
-  withStyles,
-  TableFooter,
-  TablePagination,
-  Button,
-} from "@material-ui/core"
-import TablePaginationActions from "@material-ui/core/TablePagination/TablePaginationActions"
-
-const StyledTableCell = withStyles((theme: Theme) =>
-  createStyles({
-    head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 14,
-    },
-  })
-)(TableCell)
-
-const StyledTableRow = withStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      "&:nth-of-type(odd)": {
-        backgroundColor: theme.palette.action.hover,
-      },
-    },
-  })
-)(TableRow)
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 700,
-  },
-})
+import { Box, Typography } from "@material-ui/core"
+import TagNameButton from "../components/Atoms/Button/TagNameButton"
+import CategoryNameButton from "../components/Atoms/Button/CategoryNameButton"
+import PageTitle from "../components/Atoms/Typography/PageTitle"
+import BlogArticleTable, {
+  BlogPost,
+} from "../components/Organisms/BlogArticleTable"
 
 const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
   data,
@@ -70,131 +30,36 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
     )
   }
 
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
-
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number
-  ) => {
-    setPage(newPage)
-  }
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
-    setPage(0)
-  }
+  const blogPosts: BlogPost[] = posts.map(post => ({
+    slug: post.slug,
+    title: post.title,
+    publishedAt: post.publishedAt,
+    updatedAt: post.updatedAt,
+    overview: post.overview,
+  }))
 
   return (
     <Layout>
       <SEO title="All posts" />
-      <Typography variant="h4" color="textPrimary" component="h4">
-        ブログ
-      </Typography>
+      <PageTitle name="ブログ" />
       <Typography variant="body1" color="textPrimary" component="p">
         試行錯誤したりあれこれ考えてみた記録。
       </Typography>
       <Box style={{ margin: `10px 10px 20px 10px` }}>
-        <TableContainer component={Paper}></TableContainer>
-        <Table size="small">
-          <TableBody>
-            {(rowsPerPage > 0
-              ? posts.slice(
-                  page * rowsPerPage,
-                  page * rowsPerPage + rowsPerPage
-                )
-              : posts
-            ).map(post => {
-              const title = post.title || post.slug
-              return (
-                <>
-                  <StyledTableRow key={post.slug}>
-                    <StyledTableCell align="left">
-                      <Typography
-                        variant="body1"
-                        color="textPrimary"
-                        component="p"
-                      >
-                        <Link
-                          to={post.slug}
-                          rel="noreferrer noopener"
-                          target="_blank"
-                        >
-                          {title}
-                        </Link>
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        {post.publishedAt}
-                      </Typography>
-                    </StyledTableCell>
-                    <StyledTableCell align="left">
-                      {post.overview}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                </>
-              )
-            })}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[10, 25, 50, { label: "All", value: -1 }]}
-                colSpan={3}
-                count={posts.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: { "aria-label": "rows per page" },
-                  native: true,
-                }}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
+        <BlogArticleTable posts={blogPosts} />
       </Box>
       <Box style={{ margin: `10px 10px 20px 10px` }}>
         <Typography>カテゴリ一覧</Typography>
         {categories.map(category => {
           return (
-            <Button
-              variant="outlined"
-              size="small"
-              style={{ textTransform: "none" }}
-              component={Link}
-              to={`/blog/categories/${category.slug}`}
-            >
-              <Typography variant="body1" color="textPrimary">
-                {category.name}
-              </Typography>
-            </Button>
+            <CategoryNameButton slug={category.slug} name={category.name} />
           )
         })}
       </Box>
       <Box style={{ margin: `10px 10px 20px 10px` }}>
         <Typography>タグ一覧</Typography>
         {tags.map(tag => {
-          return (
-            <Button
-              variant="outlined"
-              size="small"
-              style={{ textTransform: "none" }}
-              component={Link}
-              to={`/blog/tags/${tag.slug}`}
-            >
-              <Typography variant="body1" color="textPrimary">
-                {tag.name}
-              </Typography>
-            </Button>
-          )
+          return <TagNameButton slug={tag.slug} name={tag.name} />
         })}
       </Box>
     </Layout>
@@ -210,9 +75,8 @@ export const pageQuery = graphql`
         slug
         title
         overview
-        content
-        publishedAt(formatString: "YYYY/MM/DD　hh:mm:ss")
-        updatedAt(formatString: "YYYY/MM/DD　hh:mm:ss")
+        publishedAt
+        updatedAt
         category {
           slug
           name

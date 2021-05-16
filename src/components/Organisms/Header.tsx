@@ -1,27 +1,24 @@
 import {
   AppBar,
-  Button,
   createStyles,
   makeStyles,
   Theme,
   Toolbar,
-  Typography,
   Slide,
   IconButton,
-  Menu,
-  MenuItem,
 } from "@material-ui/core"
-import MoreIcon from "@material-ui/icons/MoreVert"
-import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded"
-import MenuBookIcon from "@material-ui/icons/MenuBook"
-import HomeIcon from "@material-ui/icons/Home"
-import ReceiptOutlinedIcon from "@material-ui/icons/ReceiptOutlined"
-import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark"
-import { Link } from "gatsby"
+import {
+  Menu,
+  DirectionsRunRounded,
+  MenuBook,
+  Home,
+  CollectionsBookmark,
+} from "@material-ui/icons"
 import React from "react"
 import { useScrollTrigger } from "@material-ui/core"
-import SiteNameButton from "../Atoms/Button/SitenameButton"
+import SiteNameButton from "../Atoms/Button/SiteNameButton"
 import MenuButton from "../Atoms/Button/MenuButton"
+import SiteMenu from "../Molecules/SiteMobileMenu"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar: {
       borderBottom: `1px solid ${theme.palette.divider}`,
-      background: `${theme.palette.info.light}`,
+      background: `#a0d8ef`,
     },
     toolbarTitle: {
       flex: 1,
@@ -44,11 +41,6 @@ const useStyles = makeStyles((theme: Theme) =>
     toolbarLink: {
       padding: theme.spacing(1),
       flexShrink: 0,
-    },
-    activeStyle: {
-      background: "#19448e",
-      color: "#eaf4fc",
-      fontWeight: "bold",
     },
     sectionDesktop: {
       display: "none",
@@ -64,13 +56,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
-
-// アクティブになった項目は色を反転させる
-const ActiveStyles = {
-  background: "#19448e",
-  color: "#eaf4fc",
-  fontWeight: "bold",
-}
 
 function HideOnScroll(props: Props) {
   const { children } = props
@@ -98,57 +83,23 @@ const Header: React.FC<Props> = props => {
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-  const handleMobileMenuClose = () => {
+  const handleMobileMenuClose = (): void => {
     setMobileMoreAnchorEl(null)
   }
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>): void => {
     setMobileMoreAnchorEl(event.currentTarget)
   }
 
   const mobileMenuId = "primary-search-account-menu-mobile"
   const renderMobileMenu = (
-    <Menu
+    <SiteMenu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem component={Link} to="/">
-        <IconButton aria-label="top page" color="inherit">
-          <HomeIcon />
-        </IconButton>
-        <p>トップ</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/personal">
-        <IconButton aria-label="personal activity" color="inherit">
-          <DirectionsRunRoundedIcon />
-        </IconButton>
-        <p>個人的な活動</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/blog">
-        <IconButton aria-label="blog" color="inherit">
-          <MenuBookIcon />
-        </IconButton>
-        <p>ブログ</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/memo">
-        <IconButton aria-label="memo" color="inherit">
-          <ReceiptOutlinedIcon />
-        </IconButton>
-        <p>メモ</p>
-      </MenuItem>
-      <MenuItem component={Link} to="/posts">
-        <IconButton aria-label="posts" color="inherit">
-          <CollectionsBookmarkIcon />
-        </IconButton>
-        <p>記事</p>
-      </MenuItem>
-    </Menu>
+      handleMobileMenuClose={handleMobileMenuClose}
+      isMobileMenuOpen={isMobileMenuOpen}
+    />
   )
+
   return (
     <header>
       <HideOnScroll {...props}>
@@ -157,17 +108,17 @@ const Header: React.FC<Props> = props => {
             <SiteNameButton siteTitle={siteTitle} />
             <div className={classes.grow}></div>
             <div className={classes.sectionDesktop}>
-              <MenuButton text="トップ" icon={<HomeIcon />} path="/" />
+              <MenuButton text="トップ" icon={<Home />} path="/" />
               <MenuButton
                 text="個人的な活動"
-                icon={<DirectionsRunRoundedIcon />}
+                icon={<DirectionsRunRounded />}
                 path="/personal"
               />
-              <MenuButton text="ブログ" icon={<MenuBookIcon />} path="/blog" />
-              <MenuButton text="メモ" icon={<HomeIcon />} path="/memo" />
+              <MenuButton text="ブログ" icon={<MenuBook />} path="/blog" />
+              <MenuButton text="メモ" icon={<Home />} path="/memo" />
               <MenuButton
                 text="記事"
-                icon={<CollectionsBookmarkIcon />}
+                icon={<CollectionsBookmark />}
                 path="/posts"
               />
             </div>
@@ -179,7 +130,7 @@ const Header: React.FC<Props> = props => {
                 onClick={handleMobileMenuOpen}
                 color="inherit"
               >
-                <MoreIcon />
+                <Menu />
               </IconButton>
             </div>
           </Toolbar>
