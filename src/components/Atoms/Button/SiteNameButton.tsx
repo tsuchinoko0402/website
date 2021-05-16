@@ -3,11 +3,11 @@ import * as styles from "./SiteNameButton.module.css"
 import { Button, Typography } from "@material-ui/core"
 import { Link } from "gatsby"
 
-interface Props {
+export interface SiteNameButtonProps {
   siteTitle: string
 }
 
-const SiteNameButton: React.FC<Props> = props => {
+const SiteNameButton: React.FC<SiteNameButtonProps> = props => {
   const siteTitle = props.siteTitle
   return (
     <>

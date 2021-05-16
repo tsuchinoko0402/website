@@ -21,6 +21,7 @@ import { Link } from "gatsby"
 import React from "react"
 import { useScrollTrigger } from "@material-ui/core"
 import SiteNameButton from "../Atoms/Button/SitenameButton"
+import MenuButton from "../Atoms/Button/MenuButton"
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -156,96 +157,19 @@ const Header: React.FC<Props> = props => {
             <SiteNameButton siteTitle={siteTitle} />
             <div className={classes.grow}></div>
             <div className={classes.sectionDesktop}>
-              <Button
-                size="medium"
-                startIcon={<HomeIcon />}
-                color="primary"
-                component={Link}
-                to="/"
-                activeStyle={ActiveStyles}
-              >
-                <Typography
-                  variant="button"
-                  color="inherit"
-                  align="center"
-                  noWrap
-                  className={classes.toolbarTitle}
-                >
-                  トップ
-                </Typography>
-              </Button>
-              <Button
-                size="medium"
-                startIcon={<DirectionsRunRoundedIcon />}
-                color="primary"
-                component={Link}
-                to="/personal"
-                activeStyle={ActiveStyles}
-              >
-                <Typography
-                  variant="button"
-                  color="inherit"
-                  align="center"
-                  noWrap
-                  className={classes.toolbarTitle}
-                >
-                  個人的な活動
-                </Typography>
-              </Button>
-              <Button
-                size="medium"
-                startIcon={<MenuBookIcon />}
-                color="primary"
-                component={Link}
-                to="/blog"
-                activeStyle={ActiveStyles}
-              >
-                <Typography
-                  variant="button"
-                  color="inherit"
-                  align="center"
-                  noWrap
-                  className={classes.toolbarTitle}
-                >
-                  ブログ
-                </Typography>
-              </Button>
-              <Button
-                size="medium"
-                startIcon={<ReceiptOutlinedIcon />}
-                color="primary"
-                component={Link}
-                to="/memo"
-                activeStyle={ActiveStyles}
-              >
-                <Typography
-                  variant="button"
-                  color="inherit"
-                  align="center"
-                  noWrap
-                  className={classes.toolbarTitle}
-                >
-                  メモ
-                </Typography>
-              </Button>
-              <Button
-                size="medium"
-                startIcon={<CollectionsBookmarkIcon />}
-                color="primary"
-                component={Link}
-                to="/posts"
-                activeStyle={ActiveStyles}
-              >
-                <Typography
-                  variant="button"
-                  color="inherit"
-                  align="center"
-                  noWrap
-                  className={classes.toolbarTitle}
-                >
-                  記事
-                </Typography>
-              </Button>
+              <MenuButton text="トップ" icon={<HomeIcon />} path="/" />
+              <MenuButton
+                text="個人的な活動"
+                icon={<DirectionsRunRoundedIcon />}
+                path="/personal"
+              />
+              <MenuButton text="ブログ" icon={<MenuBookIcon />} path="/blog" />
+              <MenuButton text="メモ" icon={<HomeIcon />} path="/memo" />
+              <MenuButton
+                text="記事"
+                icon={<CollectionsBookmarkIcon />}
+                path="/posts"
+              />
             </div>
             <div className={classes.sectionMobile}>
               <IconButton
