@@ -1,28 +1,23 @@
 import {
   AppBar,
-  Button,
   createStyles,
   makeStyles,
   Theme,
   Toolbar,
-  Typography,
   Slide,
   IconButton,
-  Menu,
-  MenuItem,
 } from "@material-ui/core"
-import MoreIcon from "@material-ui/icons/MoreVert"
-import DirectionsRunRoundedIcon from "@material-ui/icons/DirectionsRunRounded"
-import MenuBookIcon from "@material-ui/icons/MenuBook"
-import HomeIcon from "@material-ui/icons/Home"
-import ReceiptOutlinedIcon from "@material-ui/icons/ReceiptOutlined"
-import CollectionsBookmarkIcon from "@material-ui/icons/CollectionsBookmark"
-import { Link } from "gatsby"
+import {
+  MoreVert,
+  DirectionsRunRounded,
+  MenuBook,
+  Home,
+  CollectionsBookmark,
+} from "@material-ui/icons"
 import React from "react"
 import { useScrollTrigger } from "@material-ui/core"
-import SiteNameButton from "../Atoms/Button/SitenameButton"
+import SiteNameButton from "../Atoms/Button/SiteNameButton"
 import MenuButton from "../Atoms/Button/MenuButton"
-import SiteMenuItem from "../Atoms/Item/SiteMenuItem"
 import SiteMenu from "../Molecules/SiteMenu"
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,11 +42,6 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
       flexShrink: 0,
     },
-    activeStyle: {
-      background: "#19448e",
-      color: "#eaf4fc",
-      fontWeight: "bold",
-    },
     sectionDesktop: {
       display: "none",
       [theme.breakpoints.up("md")]: {
@@ -66,13 +56,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 )
-
-// アクティブになった項目は色を反転させる
-const ActiveStyles = {
-  background: "#19448e",
-  color: "#eaf4fc",
-  fontWeight: "bold",
-}
 
 function HideOnScroll(props: Props) {
   const { children } = props
@@ -116,6 +99,7 @@ const Header: React.FC<Props> = props => {
       isMobileMenuOpen={isMobileMenuOpen}
     />
   )
+
   return (
     <header>
       <HideOnScroll {...props}>
@@ -124,17 +108,17 @@ const Header: React.FC<Props> = props => {
             <SiteNameButton siteTitle={siteTitle} />
             <div className={classes.grow}></div>
             <div className={classes.sectionDesktop}>
-              <MenuButton text="トップ" icon={<HomeIcon />} path="/" />
+              <MenuButton text="トップ" icon={<Home />} path="/" />
               <MenuButton
                 text="個人的な活動"
-                icon={<DirectionsRunRoundedIcon />}
+                icon={<DirectionsRunRounded />}
                 path="/personal"
               />
-              <MenuButton text="ブログ" icon={<MenuBookIcon />} path="/blog" />
-              <MenuButton text="メモ" icon={<HomeIcon />} path="/memo" />
+              <MenuButton text="ブログ" icon={<MenuBook />} path="/blog" />
+              <MenuButton text="メモ" icon={<Home />} path="/memo" />
               <MenuButton
                 text="記事"
-                icon={<CollectionsBookmarkIcon />}
+                icon={<CollectionsBookmark />}
                 path="/posts"
               />
             </div>
@@ -146,7 +130,7 @@ const Header: React.FC<Props> = props => {
                 onClick={handleMobileMenuOpen}
                 color="inherit"
               >
-                <MoreIcon />
+                <MoreVert />
               </IconButton>
             </div>
           </Toolbar>
