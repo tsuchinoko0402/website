@@ -17,7 +17,7 @@ const ProfileAvatar: React.FC = () => {
   const classes = useStyles()
   return (
     <Avatar className={classes.avatar}>
-      <StaticImage src="../../images/profile.png" alt="Profile" />
+      <StaticImage src="../../../images/profile.png" alt="Profile" />
     </Avatar>
   )
 }
