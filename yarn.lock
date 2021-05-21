@@ -1276,6 +1276,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/m-plus-1p@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/m-plus-1p/-/m-plus-1p-4.3.0.tgz#a08df690bb920b162f58e1ddcc311aa4b2df561a"
+  integrity sha512-JsUkAPFz0cGdM/eEmGEWPzygmkMjQb8TTuIG1Oi+Ydpab4um8IwMC0twkKiV0raia3qXwcMltK1DnJO9h1CJ4w==
+
 "@fontsource/montserrat@^4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@fontsource/montserrat/-/montserrat-4.3.0.tgz#841d46d83d38bcf0d19e8788de741acf2ea4e7ed"
@@ -17300,11 +17305,6 @@ typeface-merriweather@0.0.72:
   version "0.0.72"
   resolved "https://registry.npmjs.org/typeface-merriweather/-/typeface-merriweather-0.0.72.tgz"
   integrity sha512-gO0+fcZ1fTyKUsYY1ltYOOTI6FmBGeEdyIfeQg9NL8aInndk0feiJJVJsKHm/DiyYrnQEezraAQhz/KQoqMGtw==
-
-typeface-mplus-1p@^0.1.63:
-  version "0.1.63"
-  resolved "https://registry.yarnpkg.com/typeface-mplus-1p/-/typeface-mplus-1p-0.1.63.tgz#44a257afafdab4178c0e1f108f66a4fbe24ea618"
-  integrity sha1-RKJXr6/atBeMDh8Qj2ak++JOphg=
 
 typescript@^4.2.4:
   version "4.2.4"

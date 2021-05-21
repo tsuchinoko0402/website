@@ -17,7 +17,10 @@ const SiteNameButton: React.FC<SiteNameButtonProps> = props => {
         align="left"
         noWrap
         className={styles.btn}
-        style={{ fontSize: `1.25rem`, color: `#3e62ad` }}
+        style={{
+          fontSize: `1.25rem`,
+          color: `#3e62ad`,
+        }}
       >
         {siteTitle}
       </Typography>
