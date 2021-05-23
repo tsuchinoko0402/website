@@ -17,24 +17,6 @@ export const theme = createMuiTheme({
       "Helvetica Neue",
       "sans-serif",
     ].join(","),
-    h1: {
-      fontSize: "3rem",
-    },
-    h2: {
-      fontSize: "3.5rem",
-    },
-    h3: {
-      fontSize: "3rem",
-    },
-    h4: {
-      fontSize: "2rem",
-    },
-    h5: {
-      fontSize: "1.5rem",
-    },
-    h6: {
-      fontSize: "1.25rem",
-    },
     body1: {
       color: "#696969",
     },
