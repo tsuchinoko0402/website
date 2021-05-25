@@ -9,6 +9,7 @@ import {
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import * as React from "react"
+import * as styles from "./PersonalActivety.module.css"
 
 const useStyles = makeStyles((theme: Theme) => ({
   scoutAvatar: {
@@ -32,6 +33,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   paragraph: {
     padding: `10px`,
   },
+  history: {
+    fontSize: `0.9rem`,
+  },
 }))
 
 const Profile: React.FC = () => {
@@ -53,7 +57,13 @@ const Profile: React.FC = () => {
               </Avatar>
             </Grid>
             <Grid item>
-              <Typography variant="h5" color="textPrimary" component="p">
+              <Typography
+                color="textPrimary"
+                component="p"
+                style={{ fontSize: `1.5rem` }}
+                className={styles.headingBs}
+                align="center"
+              >
                 ボーイスカウト
               </Typography>
               <Typography
@@ -106,10 +116,20 @@ const Profile: React.FC = () => {
             </Grid>
           </Grid>
           <Grid item className={classes.paragraph}>
-            <Typography variant="h6" color="textPrimary" component="p">
+            <Typography
+              color="textPrimary"
+              component="p"
+              style={{ fontSize: `1.1rem` }}
+              className={styles.heading_middle}
+            >
               スカウト歴, 隊・団役務歴
             </Typography>
-            <Typography variant="body2" color="textPrimary" component="p">
+            <Typography
+              variant="body1"
+              color="textPrimary"
+              component="p"
+              className={classes.history}
+            >
               <ul>
                 <li>2001年10月：カブスカウトに入隊</li>
                 <li>2003年9月：ボーイスカウト隊に上進</li>
@@ -130,10 +150,20 @@ const Profile: React.FC = () => {
             </Typography>
           </Grid>
           <Grid item className={classes.paragraph}>
-            <Typography variant="h6" color="textPrimary" component="p">
+            <Typography
+              variant="h6"
+              color="textPrimary"
+              component="p"
+              className={styles.heading_middle}
+            >
               地区・県連等役務歴
             </Typography>
-            <Typography variant="body2" color="textPrimary" component="p">
+            <Typography
+              variant="body1"
+              color="textPrimary"
+              component="p"
+              className={classes.history}
+            >
               <ul>
                 <li>2013年4月〜2014年3月：地区ユース委員</li>
                 <li>2014年4月〜2020年3月：地区ユース委員長、県ユース委員</li>
@@ -144,10 +174,20 @@ const Profile: React.FC = () => {
             </Typography>
           </Grid>
           <Grid item className={classes.paragraph}>
-            <Typography variant="h6" color="textPrimary" component="p">
+            <Typography
+              variant="h6"
+              color="textPrimary"
+              component="p"
+              className={styles.heading_middle}
+            >
               スカウト歴, 隊・団役務歴
             </Typography>
-            <Typography variant="body2" color="textPrimary" component="p">
+            <Typography
+              variant="body1"
+              color="textPrimary"
+              component="p"
+              className={classes.history}
+            >
               <ul>
                 <li>2001年10月：カブスカウトに入隊</li>
                 <li>2003年9月：ボーイスカウト隊に上進</li>
@@ -168,10 +208,20 @@ const Profile: React.FC = () => {
             </Typography>
           </Grid>
           <Grid item className={classes.paragraph}>
-            <Typography variant="h6" color="textPrimary" component="p">
+            <Typography
+              variant="h6"
+              color="textPrimary"
+              component="p"
+              className={styles.heading_middle}
+            >
               指導者研修歴
             </Typography>
-            <Typography variant="body2" color="textPrimary" component="p">
+            <Typography
+              variant="body1"
+              color="textPrimary"
+              component="p"
+              className={classes.history}
+            >
               <ul>
                 <li>2011年6月：第982回ボーイスカウト講習会　修了</li>
                 <li>2014年4月：ウッドバッジ研修所 BS課程 愛知116期　修了</li>
@@ -205,7 +255,13 @@ const Profile: React.FC = () => {
               </Avatar>
             </Grid>
             <Grid item>
-              <Typography variant="h5" color="textPrimary" component="p">
+              <Typography
+                variant="h5"
+                color="textPrimary"
+                component="p"
+                style={{ fontSize: `1.5rem` }}
+                className={styles.headingTb}
+              >
                 トロンボーン演奏
               </Typography>
               <Typography
@@ -219,10 +275,20 @@ const Profile: React.FC = () => {
             </Grid>
           </Grid>
           <Grid item className={classes.paragraph}>
-            <Typography variant="h6" color="textPrimary" component="p">
+            <Typography
+              variant="h6"
+              color="textPrimary"
+              component="p"
+              className={styles.heading_middle}
+            >
               所属歴
             </Typography>
-            <Typography variant="body2" color="textPrimary" component="p">
+            <Typography
+              variant="body1"
+              color="textPrimary"
+              component="p"
+              className={classes.history}
+            >
               <ul>
                 <li>
                   2005年4月：中高一貫校の音楽部（吹奏楽部）に入部。トロンボーン担当となる。

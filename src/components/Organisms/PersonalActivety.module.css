@@ -1,0 +1,29 @@
+.headingBs {
+  display: inline;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 70%, rgb(69, 190, 75) 70%);
+}
+
+.headingTb {
+  display: inline;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0) 70%,
+    rgb(252, 236, 93) 70%
+  );
+}
+
+.heading_middle {
+  position: relative;
+  padding-left: 1em;
+}
+
+.heading_middle::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  content: "";
+  width: 8px;
+  height: 8px;
+  border: solid 4px #446689;
+  border-radius: 100%;
+}
