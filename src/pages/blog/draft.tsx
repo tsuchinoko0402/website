@@ -14,7 +14,7 @@ const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
 
   useEffect(() => {
     fetch(
-      `https://your-service-id.microcms.io/api/v1/post/${contentId}?draftKey=${draftKey}`,
+      `https://okazaki-shogo.microcms.io/api/v1/post/${contentId}?draftKey=${draftKey}`,
       {
         headers: {
           "X-API-KEY": "your-api-key",
