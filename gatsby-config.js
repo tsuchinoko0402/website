@@ -5,8 +5,9 @@ module.exports = {
       name: `OKAZAKI Shogo`,
       summary: `OKAZAKI Shogo's Website.`,
     },
-    description: `OKAZAKI Shogo's Website`,
+    description: `大阪でエンジニアをやっている岡崎正悟のウェブサイトです。`,
     siteUrl: `https://www.zakioka.net/`,
+    image: `/images/favicon.png`,
     social: {
       mail: `okazaki@zakioka.net`,
       twitter: `tsuchinoko0402`,
@@ -141,7 +142,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#a0d8ef`,
         display: `minimal-ui`,
-        icon: `src/images/profile-circle.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     {

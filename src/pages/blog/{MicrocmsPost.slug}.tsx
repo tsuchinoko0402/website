@@ -3,6 +3,8 @@ import { graphql, PageProps } from "gatsby"
 import Layout from "../../components/Layout"
 import PostContent from "../../components/Organisms/PostContent"
 import { Util } from "../../Util"
+import SEO from "../../components/SEO"
+import striptags from "striptags"
 
 const BlogPostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
   const post = props.data.microcmsPost
@@ -18,6 +20,11 @@ const BlogPostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
     <Layout>
       <title>{post.title}</title>
       <meta name="blog" content={`${post.title}`} />
+      <SEO
+        title={post.title}
+        image={post.thumbnail.url}
+        description={sumarrize(post.content)}
+      />
       <PostContent
         title={post.title}
         publishedAt={publishedDate}
@@ -28,12 +35,22 @@ const BlogPostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
   )
 }
 
+function sumarrize(html: string) {
+  const metaDescription = striptags(html).replace(/\r?\n/g, "").trim()
+  return metaDescription.length <= 120
+    ? metaDescription
+    : metaDescription.slice(0, 120) + "..."
+}
+
 export const query = graphql`
   query BlogPage($id: String!) {
     microcmsPost(id: { eq: $id }) {
       slug
       title
       content
+      thumbnail {
+        url
+      }
       publishedAt
       updatedAt
       category {

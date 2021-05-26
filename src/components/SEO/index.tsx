@@ -8,6 +8,7 @@
 import * as React from "react"
 import PropTypes from "prop-types"
 import { Helmet, HelmetProvider } from "react-helmet-async"
+import { useLocation } from "@reach/router"
 import { useStaticQuery, graphql } from "gatsby"
 
 type Meta =
@@ -25,16 +26,21 @@ interface Props {
   lang?: string
   meta?: Meta[]
   title: string
+  image?: string
 }
 
-const Seo: React.FC<Props> = props => {
+const SEO: React.FC<Props> = props => {
+  const { pathname } = useLocation()
   const { site } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
+            defaultTitle: title
             title
             description
+            siteUrl
+            image
             social {
               twitter
             }
@@ -46,6 +52,8 @@ const Seo: React.FC<Props> = props => {
 
   const metaDescription = props.description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
+  const imageUrl = staticOrDynamic(site.siteUrl + props.image)
+  const url = `${site.siteUrl}${pathname}`
 
   return (
     <HelmetProvider>
@@ -59,12 +67,24 @@ const Seo: React.FC<Props> = props => {
             content: metaDescription,
           },
           {
-            property: `og:title`,
-            content: props.title,
-          },
-          {
             property: `og:description`,
             content: metaDescription,
+          },
+          {
+            name: `image`,
+            content: imageUrl,
+          },
+          {
+            property: `og:image`,
+            content: imageUrl,
+          },
+          {
+            property: `og:url`,
+            content: url,
+          },
+          {
+            property: `og:title`,
+            content: props.title,
           },
           {
             property: `og:type`,
@@ -86,23 +106,41 @@ const Seo: React.FC<Props> = props => {
             name: `twitter:description`,
             content: metaDescription,
           },
+          {
+            name: `twitter:image`,
+            content: imageUrl,
+          },
         ].concat(props.meta)}
       />
     </HelmetProvider>
   )
 }
 
-Seo.defaultProps = {
-  lang: `en`,
+SEO.defaultProps = {
+  title: null,
+  lang: `ja`,
   meta: [],
-  description: ``,
+  description: null,
+  image: null,
 }
 
-Seo.propTypes = {
+SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
+  image: PropTypes.string,
   title: PropTypes.string.isRequired,
 }
 
-export default Seo
+export default SEO
+
+function staticOrDynamic(imgPath: string) {
+  const str = imgPath
+  let array = str.split(/https:\/\//)
+  //console.log('◆strは'+ str + '◆str.lengthは'+ str.length)
+  //console.log('■arrayは', array)
+  //console.log('■最終形 ' + 'https://' + array[2])
+  return str.length <= 100 // 100文字以下ならstrをそのまま返す.100文字以上なら`https:// + array[2]`を返す。
+    ? str
+    : "https://" + array[2]
+}

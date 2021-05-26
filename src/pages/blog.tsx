@@ -20,7 +20,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
   if (posts.length === 0) {
     return (
       <Layout>
-        <SEO title="All posts" />
+        <SEO title="ブログ記事一覧" />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
           directory you specified for the "gatsby-source-filesystem" plugin in
@@ -30,13 +30,21 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
     )
   }
 
-  const blogPosts: BlogPost[] = posts.map(post => ({
-    slug: post.slug,
-    title: post.title,
-    publishedAt: post.publishedAt,
-    updatedAt: post.updatedAt,
-    overview: post.overview,
-  }))
+  const blogPosts: BlogPost[] = posts.map(
+    (post: {
+      slug: any
+      title: any
+      publishedAt: any
+      updatedAt: any
+      overview: any
+    }) => ({
+      slug: post.slug,
+      title: post.title,
+      publishedAt: post.publishedAt,
+      updatedAt: post.updatedAt,
+      overview: post.overview,
+    })
+  )
 
   return (
     <Layout>
@@ -50,7 +58,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
       </Box>
       <Box style={{ margin: `10px 10px 20px 10px` }}>
         <Typography>カテゴリ一覧</Typography>
-        {categories.map(category => {
+        {categories.map((category: { slug: string; name: string }) => {
           return (
             <CategoryNameButton slug={category.slug} name={category.name} />
           )
@@ -58,7 +66,7 @@ const BlogIndex: React.FC<PageProps<GatsbyTypes.BlogIndexPageQuery>> = ({
       </Box>
       <Box style={{ margin: `10px 10px 20px 10px` }}>
         <Typography>タグ一覧</Typography>
-        {tags.map(tag => {
+        {tags.map((tag: { slug: string; name: string }) => {
           return <TagNameButton slug={tag.slug} name={tag.name} />
         })}
       </Box>

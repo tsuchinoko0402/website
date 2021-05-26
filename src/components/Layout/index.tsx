@@ -12,17 +12,15 @@ interface Props {
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <MuiThemeProvider theme={theme}>
-      <Box>
-        <Header siteTitle="OKAZAKI Shogo's Website" />
-        <main
-          style={{
-            padding: `80px 10px 20px 10px`,
-          }}
-        >
-          {children}
-        </main>
-        <Footer />
-      </Box>
+      <Header siteTitle="OKAZAKI Shogo's Website" />
+      <main
+        style={{
+          padding: `80px 10px 20px 10px`,
+        }}
+      >
+        {children}
+      </main>
+      <Footer />
     </MuiThemeProvider>
   )
 }

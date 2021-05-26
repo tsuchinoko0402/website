@@ -21,7 +21,7 @@ const MemoIndex: React.FC<PageProps<GatsbyTypes.MemoIndexPageQuery>> = ({
   if (posts.length === 0) {
     return (
       <Layout>
-        <SEO title="All memos" />
+        <SEO title="メモ一覧" />
         <p>No memo posts found.</p>
       </Layout>
     )
@@ -33,7 +33,7 @@ const MemoIndex: React.FC<PageProps<GatsbyTypes.MemoIndexPageQuery>> = ({
 
   return (
     <Layout>
-      <SEO title="All memos" />
+      <SEO title="雑多なメモ" />
       <PageTitle name="雑多なメモ" />
       <Typography variant="body1" color="textPrimary" component="p">
         主に自分のため用。ブログ記事とか他所に投稿するまでもない内容のもの。まとまったら記事にする（たぶん
