@@ -37,10 +37,10 @@ const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
         image={data.microcmsPost?.ogimage?.url}
       />
       <PostContent
-        title={data.microcmsNews?.title}
-        publishedAt={data.microcmsNews?.publishedAt}
-        updatedAt={data.microcmsNews?.updatedAt}
-        content={data.microcmsNews?.content}
+        title={data.microcmsPost?.title}
+        publishedAt={data.microcmsPost?.publishedAt}
+        updatedAt={data.microcmsPost?.updatedAt}
+        content={data.microcmsPost?.content}
       />
     </Layout>
   )
