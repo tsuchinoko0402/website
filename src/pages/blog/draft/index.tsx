@@ -9,7 +9,6 @@ import PostContent from "../../../components/Organisms/PostContent"
 const BlogDraftPage: React.FC<PageProps> = ({ location }) => {
   const { contentId, draftKey } = queryString.parse(location.search)
   let [data, setData] = useState(null)
-  console.log(`MICROCMS_API_KEY: ${process.env.MICROCMS_API_KEY}`)
 
   useEffect(() => {
     if (!data) {

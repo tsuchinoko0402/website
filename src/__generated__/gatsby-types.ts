@@ -1115,6 +1115,7 @@ type SitePluginPluginOptions = {
   readonly apiKey: Maybe<Scalars['String']>;
   readonly serviceId: Maybe<Scalars['String']>;
   readonly apis: Maybe<ReadonlyArray<Maybe<SitePluginPluginOptionsApis>>>;
+  readonly allowList: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
   readonly allExtensions: Maybe<Scalars['Boolean']>;
   readonly isTSX: Maybe<Scalars['Boolean']>;
@@ -2764,6 +2765,7 @@ type SitePluginPluginOptionsFilterInput = {
   readonly apiKey: Maybe<StringQueryOperatorInput>;
   readonly serviceId: Maybe<StringQueryOperatorInput>;
   readonly apis: Maybe<SitePluginPluginOptionsApisFilterListInput>;
+  readonly allowList: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
   readonly allExtensions: Maybe<BooleanQueryOperatorInput>;
   readonly isTSX: Maybe<BooleanQueryOperatorInput>;
@@ -3097,6 +3099,7 @@ type SitePageFieldsEnum =
   | 'pluginCreator.pluginOptions.serviceId'
   | 'pluginCreator.pluginOptions.apis'
   | 'pluginCreator.pluginOptions.apis.endpoint'
+  | 'pluginCreator.pluginOptions.allowList'
   | 'pluginCreator.pluginOptions.pathCheck'
   | 'pluginCreator.pluginOptions.allExtensions'
   | 'pluginCreator.pluginOptions.isTSX'
@@ -4940,6 +4943,7 @@ type SitePluginFieldsEnum =
   | 'pluginOptions.serviceId'
   | 'pluginOptions.apis'
   | 'pluginOptions.apis.endpoint'
+  | 'pluginOptions.allowList'
   | 'pluginOptions.pathCheck'
   | 'pluginOptions.allExtensions'
   | 'pluginOptions.isTSX'
@@ -4978,10 +4982,13 @@ type SitePluginSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
-type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
+type BlogIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type NotFoundPageQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
+type BlogIndexPageQuery = { readonly allMicrocmsPost: { readonly nodes: ReadonlyArray<(
+      Pick<MicrocmsPost, 'slug' | 'title' | 'overview' | 'publishedAt' | 'updatedAt'>
+      & { readonly category: Maybe<Pick<MicrocmsPostCategory, 'slug' | 'name'>>, readonly tag: Maybe<ReadonlyArray<Maybe<Pick<MicrocmsPostTag, 'name' | 'slug'>>>> }
+    )> }, readonly allMicrocmsCategory: { readonly nodes: ReadonlyArray<Pick<MicrocmsCategory, 'slug' | 'name' | 'description'>> }, readonly allMicrocmsTag: { readonly nodes: ReadonlyArray<Pick<MicrocmsTag, 'name' | 'slug'>> } };
 
 type BlogPageQueryVariables = Exact<{
   id: Scalars['String'];
@@ -4993,6 +5000,14 @@ type BlogPageQuery = { readonly microcmsPost: Maybe<(
     & { readonly thumbnail: Maybe<Pick<MicrocmsPostThumbnail, 'url'>>, readonly category: Maybe<Pick<MicrocmsPostCategory, 'slug' | 'name'>> }
   )> };
 
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title'>
+      & { readonly social: Maybe<Pick<Social, 'mail' | 'twitter' | 'facebook' | 'github'>> }
+    )> }> };
+
 type BlogCategoryPageQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
@@ -5002,14 +5017,6 @@ type BlogCategoryPageQuery = { readonly microcmsCategory: Maybe<Pick<MicrocmsCat
       Pick<MicrocmsPost, 'slug' | 'title' | 'overview' | 'publishedAt' | 'updatedAt'>
       & { readonly category: Maybe<Pick<MicrocmsPostCategory, 'slug' | 'name'>> }
     )> } };
-
-type BlogIndexPageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BlogIndexPageQuery = { readonly allMicrocmsPost: { readonly nodes: ReadonlyArray<(
-      Pick<MicrocmsPost, 'slug' | 'title' | 'overview' | 'publishedAt' | 'updatedAt'>
-      & { readonly category: Maybe<Pick<MicrocmsPostCategory, 'slug' | 'name'>>, readonly tag: Maybe<ReadonlyArray<Maybe<Pick<MicrocmsPostTag, 'name' | 'slug'>>>> }
-    )> }, readonly allMicrocmsCategory: { readonly nodes: ReadonlyArray<Pick<MicrocmsCategory, 'slug' | 'name' | 'description'>> }, readonly allMicrocmsTag: { readonly nodes: ReadonlyArray<Pick<MicrocmsTag, 'name' | 'slug'>> } };
 
 type BlogTagPageQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -5039,27 +5046,15 @@ type MemoPostBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe
     & { readonly frontmatter: Maybe<Pick<Frontmatter, 'title' | 'publishedDate' | 'updatedDate' | 'description'>> }
   )> };
 
-type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title'>
-      & { readonly social: Maybe<Pick<Social, 'mail' | 'twitter' | 'facebook' | 'github'>> }
-    )> }> };
-
 type PostsPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PostsPageQuery = { readonly allFeednote: { readonly nodes: ReadonlyArray<Pick<Feednote, 'link' | 'title' | 'pubDate'>> }, readonly allFeedQiita: { readonly nodes: ReadonlyArray<Pick<FeedQiita, 'link' | 'title' | 'pubDate'>> }, readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
-type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+type NotFoundPageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type Unnamed_2_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
-      Pick<SiteSiteMetadata, 'title' | 'description' | 'siteUrl' | 'image'>
-      & { defaultTitle: SiteSiteMetadata['title'] }
-      & { readonly social: Maybe<Pick<Social, 'twitter'>> }
-    )> }> };
+type NotFoundPageQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
@@ -5086,5 +5081,14 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = Pick<ImageSharpFluid, 't
 type GatsbyImageSharpFluid_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
 type GatsbyImageSharpFluid_withWebp_noBase64Fragment = Pick<ImageSharpFluid, 'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'>;
+
+type Unnamed_2_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_2_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<(
+      Pick<SiteSiteMetadata, 'title' | 'description' | 'siteUrl' | 'image'>
+      & { defaultTitle: SiteSiteMetadata['title'] }
+      & { readonly social: Maybe<Pick<Social, 'twitter'>> }
+    )> }> };
 
 }
