@@ -52,7 +52,7 @@ const SEO: React.FC<Props> = props => {
 
   const metaDescription = props.description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
-  const imageUrl = staticOrDynamic(site.siteUrl + props.image)
+  const imageUrl = `${site.siteUrl}${props.image || site.image}`
   const url = `${site.siteUrl}${pathname}`
 
   return (
@@ -133,14 +133,3 @@ SEO.propTypes = {
 }
 
 export default SEO
-
-function staticOrDynamic(imgPath: string) {
-  const str = imgPath
-  let array = str.split(/https:\/\//)
-  //console.log('◆strは'+ str + '◆str.lengthは'+ str.length)
-  //console.log('■arrayは', array)
-  //console.log('■最終形 ' + 'https://' + array[2])
-  return str.length <= 100 // 100文字以下ならstrをそのまま返す.100文字以上なら`https:// + array[2]`を返す。
-    ? str
-    : "https://" + array[2]
-}

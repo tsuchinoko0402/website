@@ -10,11 +10,11 @@ const BlogPostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
   const post = props.data.microcmsPost
   const publishedDate = Util.formatDate(
     new Date(Date.parse(post.publishedAt)),
-    "YYYY年MM月DD日 hh:mm:ss"
+    "YYYY年MM月DD日"
   )
   const updatedDate = Util.formatDate(
     new Date(Date.parse(post.updatedAt)),
-    "YYYY年MM月DD日 hh:mm:ss"
+    "YYYY年MM月DD日"
   )
   return (
     <Layout>
@@ -22,7 +22,7 @@ const BlogPostPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = props => {
       <meta name="blog" content={`${post.title}`} />
       <SEO
         title={post.title}
-        image={post.thumbnail.url}
+        // image={post.thumbnail.url}
         description={sumarrize(post.content)}
       />
       <PostContent
