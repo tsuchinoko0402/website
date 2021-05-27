@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react"
 import { PageProps } from "gatsby"
 import queryString from "query-string"
 
-import Layout from "../../components/Layout"
-import SEO from "../../components/SEO"
-import PostContent from "../../components/Organisms/PostContent"
+import Layout from "../../../components/Layout"
+import SEO from "../../../components/SEO"
+import PostContent from "../../../components/Organisms/PostContent"
 
 const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
   location,
@@ -31,6 +31,8 @@ const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
 
   return (
     <Layout>
+      <title>{data.microcmsPost?.title}</title>
+      <div>これは下書きです。</div>
       <SEO
         title={data.microcmsPost?.title}
         // description={data.microcmsPost?.description}
