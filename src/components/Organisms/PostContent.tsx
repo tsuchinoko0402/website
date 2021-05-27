@@ -16,6 +16,10 @@ interface Props {
 const PostContent: React.FC<Props> = props => {
   const { title, publishedAt, updatedAt, content } = props
 
+  if (!content) {
+    return <p>No blog article.</p>
+  }
+
   const contentBody = cheerio.load(content)
   contentBody("pre code").each((_, elm) => {
     const result = hljs.highlightAuto(contentBody(elm).text())

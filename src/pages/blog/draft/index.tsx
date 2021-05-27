@@ -10,7 +10,7 @@ const BlogDraftPage: React.FC<PageProps> = ({ location }) => {
   const { contentId, draftKey } = queryString.parse(location.search)
   console.log(`contentId: ${contentId}`)
   console.log(`draftKey: ${draftKey}`)
-  const [data, setData] = useState(null)
+  let [data, setData] = useState(null)
 
   useEffect(() => {
     if (!data) {
@@ -22,8 +22,14 @@ const BlogDraftPage: React.FC<PageProps> = ({ location }) => {
           },
         }
       )
-        .then(res => res.json())
-        .then(res => setData({ microcmsPost: res }))
+        .then(res => {
+          if (res.ok) {
+            return res.json()
+          }
+        })
+        .then(res => {
+          data = setData(res)
+        })
     } else {
       return function cleanup() {
         console.log("done")
@@ -33,18 +39,18 @@ const BlogDraftPage: React.FC<PageProps> = ({ location }) => {
 
   return (
     <Layout>
-      <title>{data.microcmsPost?.title}</title>
+      <title>{data?.title}</title>
       <div>これは下書きです。</div>
       <SEO
-        title={data.microcmsPost?.title}
+        title={data?.title}
         // description={data.microcmsPost?.description}
         // image={data.microcmsPost?.ogimage?.url}
       />
       <PostContent
-        title={data.microcmsPost?.title}
-        publishedAt={data.microcmsPost?.publishedAt}
-        updatedAt={data.microcmsPost?.updatedAt}
-        content={data.microcmsPost?.content}
+        title={data?.title}
+        publishedAt={data?.publishedAt}
+        updatedAt={data?.updatedAt}
+        content={data?.content}
       />
     </Layout>
   )
