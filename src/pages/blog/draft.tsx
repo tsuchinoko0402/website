@@ -17,7 +17,7 @@ const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
       `https://okazaki-shogo.microcms.io/api/v1/post/${contentId}?draftKey=${draftKey}`,
       {
         headers: {
-          "X-API-KEY": "your-api-key",
+          "X-API-KEY": process.env.MICROCMS_API_KEY,
         },
       }
     )
@@ -33,8 +33,8 @@ const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
     <Layout>
       <SEO
         title={data.microcmsPost?.title}
-        description={data.microcmsPost?.description}
-        image={data.microcmsPost?.ogimage?.url}
+        // description={data.microcmsPost?.description}
+        // image={data.microcmsPost?.ogimage?.url}
       />
       <PostContent
         title={data.microcmsPost?.title}
