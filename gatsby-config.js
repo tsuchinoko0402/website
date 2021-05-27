@@ -180,6 +180,12 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["MICROCMS_API_KEY"],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-gatsby-cloud`,
     `gatsby-plugin-typegen`,
