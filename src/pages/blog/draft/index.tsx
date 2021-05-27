@@ -6,28 +6,30 @@ import Layout from "../../../components/Layout"
 import SEO from "../../../components/SEO"
 import PostContent from "../../../components/Organisms/PostContent"
 
-const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
-  location,
-}) => {
+const BlogDraftPage: React.FC<PageProps> = ({ location }) => {
   const { contentId, draftKey } = queryString.parse(location.search)
-  const [data, setData] = useState<GatsbyTypes.BlogPageQuery | null>(null)
+  console.log(`contentId: ${contentId}`)
+  console.log(`draftKey: ${draftKey}`)
+  const [data, setData] = useState(null)
 
   useEffect(() => {
-    fetch(
-      `https://okazaki-shogo.microcms.io/api/v1/post/${contentId}?draftKey=${draftKey}`,
-      {
-        headers: {
-          "X-API-KEY": process.env.MICROCMS_API_KEY,
-        },
+    if (!data) {
+      fetch(
+        `https://okazaki-shogo.microcms.io/api/v1/post/${contentId}?draftKey=${draftKey}`,
+        {
+          headers: {
+            "X-API-KEY": process.env.MICROCMS_API_KEY,
+          },
+        }
+      )
+        .then(res => res.json())
+        .then(res => setData({ microcmsPost: res }))
+    } else {
+      return function cleanup() {
+        console.log("done")
       }
-    )
-      .then(res => res.json())
-      .then(res => setData({ microcmsPost: res })) // ※1
-  }, []) // ※2
-
-  if (data === null) {
-    return null
-  }
+    }
+  }, [])
 
   return (
     <Layout>
@@ -48,4 +50,4 @@ const BlogPage: React.FC<PageProps<GatsbyTypes.BlogPageQuery>> = ({
   )
 }
 
-export default BlogPage
+export default BlogDraftPage
