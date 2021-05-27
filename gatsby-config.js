@@ -17,13 +17,12 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: "gatsby-plugin-google-gtag",
       options: {
-        trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
-        head: true,
-        anonymize: true,
-        respectDNT: true,
-        pageTransitionDelay: 0,
+        trackingIds: [process.env.GOOGLE_ANALYTICS_TRACKING_ID],
+        pluginConfig: {
+          head: true,
+        },
       },
     },
     `gatsby-plugin-image`,
