@@ -6,6 +6,7 @@ import "highlight.js/styles/solarized-dark.css"
 import PageTitle from "../Atoms/Typography/PageTitle"
 import EventTwoToneIcon from "@material-ui/icons/EventTwoTone"
 import UpdateIcon from "@material-ui/icons/Update"
+import Toc from "./Toc"
 interface Props {
   title: string
   publishedAt: string
@@ -20,11 +21,13 @@ const PostContent: React.FC<Props> = props => {
     return <p>No blog article.</p>
   }
 
-  const contentBody = cheerio.load(content)
-  contentBody("pre code").each((_, elm) => {
-    const result = hljs.highlightAuto(contentBody(elm).text())
-    contentBody(elm).html(result.value)
-    contentBody(elm).addClass("hljs")
+  const $ = cheerio.load(content)
+
+  // コードブロックにシンタックスハイライトを適用するためのクラスを追加
+  $("pre code").each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text())
+    $(elm).html(result.value)
+    $(elm).addClass("hljs")
   })
 
   return (
@@ -37,10 +40,10 @@ const PostContent: React.FC<Props> = props => {
           {updatedAt}
         </Typography>
       </header>
+      <Toc htmlString={content} />
       <Box>
         <Typography>
-          {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
-          <div dangerouslySetInnerHTML={{ __html: contentBody.html() }} />
+          <div dangerouslySetInnerHTML={{ __html: $.html() }} />
         </Typography>
       </Box>
     </article>
