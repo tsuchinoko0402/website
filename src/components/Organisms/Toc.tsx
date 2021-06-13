@@ -35,7 +35,7 @@ const Toc: React.FC<Props> = props => {
     }))
 
   return (
-    <Paper>
+    <>
       {toc.length ? (
         <div id="create-table-of-contents">
           <h4>目次</h4>
@@ -54,7 +54,7 @@ const Toc: React.FC<Props> = props => {
       ) : (
         ""
       )}
-    </Paper>
+    </>
   )
 }
 
