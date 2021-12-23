@@ -107,6 +107,7 @@ description: Rust で環境変数を扱う際のメモ
 
     use config::ConfigError;
     use dotenv::dotenv;
+	use once_cell::sync::Lazy;
     use lazy_static::lazy_static;
     use serde::Deserialize;
 
@@ -127,12 +128,10 @@ description: Rust で環境変数を扱う際のメモ
     }
 
     /// static変数の初期化
-    lazy_static! {
-        static ref CONFIG: Config = {
-            dotenv().ok();
-            Config::from_env().unwrap()
-        };
-    }
+    static CONFIG: Lazy<String> = Lazy::new(|| {
+		dotenv().ok();
+		Config::from_env().unwrap()
+	});
 
     fn main() {
         println!("address: {}", CONFIG.address);
