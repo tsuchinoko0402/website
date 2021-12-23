@@ -128,7 +128,7 @@ description: Rust で環境変数を扱う際のメモ
     }
 
     /// static変数の初期化
-    static CONFIG: Lazy<String> = Lazy::new(|| {
+    static CONFIG: Lazy<Config> = Lazy::new(|| {
 		dotenv().ok();
 		Config::from_env().unwrap()
 	});
