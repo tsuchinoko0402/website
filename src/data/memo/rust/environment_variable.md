@@ -96,7 +96,7 @@ description: Rust で環境変数を扱う際のメモ
     # .envの内容をConfigに保存するcrate
     config = "0.10.1"
     # 実行時にstatic変数を初期化するcrate
-    lazy_static = "1.4.0"
+    once_cell = "1.9.0"
     serde = {version = "1.0.116", features = ["derive"]}
     ```
 
@@ -108,7 +108,6 @@ description: Rust で環境変数を扱う際のメモ
     use config::ConfigError;
     use dotenv::dotenv;
 	use once_cell::sync::Lazy;
-    use lazy_static::lazy_static;
     use serde::Deserialize;
 
     /// .evnの内容を保存するstruct
