@@ -3,7 +3,6 @@ title: GCP で Terraform を利用する準備
 publishedDate: "2022-09-27"
 updatedDate: "2021-09-27"
 description: GCP で Terraform を利用し始める時の準備。
-tags:[gcp, terraform]
 ---
 
 # 前提
