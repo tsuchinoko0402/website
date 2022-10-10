@@ -60,11 +60,11 @@ const ProfileCard: React.FC = () => {
               <dt>所属</dt>
               <dd>
                 <Link
-                  to="https://www.linkode.co.jp/"
+                  to="https://www.monotaro.com/"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
-                  株式会社リンコード
+                  株式会社MonotaRO
                 </Link>
               </dd>
             </dl>
